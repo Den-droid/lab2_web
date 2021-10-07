@@ -99,13 +99,13 @@ function createButtonSecondItem(name){
 function applyStylesOnRestart(){
     for(let i = 0; i < localStorage.length; i++){
         let key = localStorage.key(i);
-        if(key.search(new RegExp("item\d*[.]\d*")) !== 0){
-            let value = localStorage.getItem(key);
-            let elems = key.split(".");
+        let value = localStorage.getItem(key);
+        let elems = key.split(".");
+        if(elems.length != 1 && elems[0].search("item\d+") && elems[1].search("\d+")){
             let item = document.getElementById(elems[0]);
             let element = item.childNodes[elems[1]];
-            element.style.cssText += value;
-
+             element.style.cssText += value;
+    
             createButtonSecondItem(`${key}`);
         }
     }
